@@ -2,23 +2,36 @@
 Spaceship nebuchadnezzar;
 
 Star [] space;
+Asteroid [] ooph;
 
 public void setup() 
 {
+	frameRate(60);
 	size(600,600);
+
 	space=new Star[200];
+	ooph=new Asteroid[15];
+
 	for(int i=0;i<space.length;i++){
 		space[i]=new Star();
 	}
+	for(int i=0;i<ooph.length;i++){
+		ooph[i]=new Asteroid();
+	}
 	nebuchadnezzar=new Spaceship();
-	frameRate(60);
 }
 public void draw() 
 {
 	background(37, 0, 63);
+
 	for(int i=0;i<space.length;i++){
 		space[i].show();
 	}
+	for(int i=0;i<ooph.length;i++){
+		ooph[i].show();
+		ooph[i].move();
+	}
+
 	nebuchadnezzar.show();
 	nebuchadnezzar.move();
 }
