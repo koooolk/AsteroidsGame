@@ -2,7 +2,7 @@
 Spaceship nebuchadnezzar;
 
 Star [] space;
-Asteroid [] ooph;
+ArrayList<Asteroid> ooph=new ArrayList<Asteroid>();
 
 public void setup() 
 {
@@ -10,30 +10,33 @@ public void setup()
 	size(600,600);
 
 	space=new Star[200];
-	ooph=new Asteroid[15];
+	for(int i=0; i<15;i++){
+		ooph.add(new Asteroid());
+	}
 
 	for(int i=0;i<space.length;i++){
 		space[i]=new Star();
 	}
-	for(int i=0;i<ooph.length;i++){
-		ooph[i]=new Asteroid();
-	}
+	
 	nebuchadnezzar=new Spaceship();
 }
-public void draw() 
+public void draw() 	
 {
 	background(37, 0, 63);
 
 	for(int i=0;i<space.length;i++){
 		space[i].show();
 	}
-	for(int i=0;i<ooph.length;i++){
-		ooph[i].show();
-		ooph[i].move();
+	for(int i=0;i<ooph.size();i++){
+		ooph.get(i).show();
+		ooph.get(i).move();
+		float d=dist(nebuchadnezzar.getX(),nebuchadnezzar.getY(),ooph.get(i).getX(),ooph.get(i).getY());
+		if(d<15) ooph.remove(i);
 	}
 
 	nebuchadnezzar.show();
 	nebuchadnezzar.move();
+
 }
 public void keyPressed(){
 
